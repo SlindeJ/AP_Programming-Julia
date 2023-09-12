@@ -1,0 +1,20 @@
+print("Amount saved: ")
+p = readline()
+p = parse(Float64, p)
+print("Interest rate: ")
+r = readline()
+r = parse(Float64, r)
+print("Number of times compounded per year: ")
+n = readline()
+n = parse(Float64, n)
+print("Number of days at interest: ")
+t = readline()
+t = parse(Float64, t)
+
+a = p * ((1+(0.01*r)/n)^(n*t/365))
+i = a - p
+a = round(a)
+i = round(i)
+
+println("\nInterest earned is $i", i)
+println("The total amount in savings is now $a", a)
