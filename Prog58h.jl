@@ -10,11 +10,10 @@ n = parse(Float64, n)
 print("Number of days at interest: ")
 t = readline()
 t = parse(Float64, t)
-
 a = p * ((1+(0.01*r)/n)^(n*t/365))
 i = a - p
-a = round(a)
-i = round(i)
-
-println("\nInterest earned is $i", i)
-println("The total amount in savings is now $a", a)
+a = round(a, digits = 2
+)
+i = round(i, digits = 2)
+println("\nInterest earned is $i")
+println("The total amount in savings is now $a")
