@@ -1,14 +1,15 @@
-<h1>Handbook on Programming in ?????</h1>
+<h1>Handbook on Programming in Julia 8</h1>
 
 **AP Computer Science Principles 2023-2024**
 
-FirstName LastName
+Jacob Slinde
+
 
 <!-- This is a comment (which will not be displayed in the live file);
 replace all "???" with your own text. -->
 
 
-
+    ADD some actual code later too
 
 ___
 
@@ -63,13 +64,15 @@ ___
 
 
 
-# 1. Compiling and Running
-
-???
+# 1. Compiling and Running 
 
 
+julia is a compiled language
+running a julia program from the shell is typed as follows:
+julia Program_Name.jl 
+where "Program_Name" is the name of the file
 
-
+it is important to write julia files with a ".jl" at the end to avoid making a file that doesn't run julia like this one 
 
 ___
 
@@ -79,7 +82,31 @@ ___
 
 # 2. Data Types
 
-???
+Interestingly, julia really doesn't have types
+
+in julia, there are no inherint types and everything can be any type of thing 
+you do not need to declair any types when making variables and such
+x = "look"
+x = 1
+x = 1.234
+
+
+most things in julia are type "any" which can literally be anything but there are also types like Int16, Int32, Int64, Float16-64, Strings, and booleans 
+x = parse(Float64, x)
+x = true
+
+
+every type in julia is like a "subtype" of the original "any" type
+something unexpected i learned was that booleans are considered integers in julia, so math can be done with them 
+true is equivilent to 1 and false is equivilent to 0
+1000 * false = 0
+99 * true = 99
+
+not sure if this goes here but you can also add strings in julia
+a = "no" 
+b = " u" 
+x = a * b
+x = "no u"
 
 ```LANGUAGE_HERE
 
@@ -95,9 +122,23 @@ ___
 
 
 
-# 3. Console I/O
+# 3. Console I/O        # I think io stands for in/out
 
-???
+there really arent any specific in or out functions in julia
+to print something you can just type 
+print("Please enter the string: ")
+println("Please enter the string: ")   # adds a linebreak after
+
+
+to recieve user input just make a variable and set it to take in the user input
+x = readline()
+
+julia is cool because you don't need to set the variable to any value so x can be entered as a string or int or float and it will be fine
+if you need to make sure a value is an int/float you can use parse
+x = readline()  #lets say they enter 1 but you need it as a float
+x = parse(Float64, x)
+this will change x to the Float64 type
+
 
 
 
@@ -111,12 +152,21 @@ ___
 
 # 4. Arithmetic Operations
 
-???
+in julia the operations addition, subtraction, multiplication, and division are done with the following operators
++, -, *, /
+1 + 3 = 4
+3 - 1 = 2
+3 * 3 = 9
+10 / 4 = 2.5    # make sure 10 or 4 are a float, or else int division works differently
 
+appatently you can use ÷ for integer division and you use ^ for exponents
+(int division) ÷, (and power function) ^
+10 ÷ 2 = 5     # as an int still
+3^3 = 27
 
-
-
-
+IMPORTANT:
+julia uses the correct order of operations during calculations
+1 + 4 / 2 = 3          #make sure no int division 
 ___
 
 
@@ -125,11 +175,12 @@ ___
 
 # 5. Assignment Operations
 
-???
-
-
-
-
+haha julia go brrrrrrrrr
+a = "sjfl" 
+x = "whatever you want" 
+b = 1.92674027738
+julia does not care at all
+be lazy
 
 ___
 
@@ -139,7 +190,31 @@ ___
 
 # 6. Comments
 
-???
+THERE ARE QUITE A FEW THINGS TO NOTE ABOUT IN JULIA
+#1. easy one, to comment use the "#" symbol
+
+#2. julia does NOT like a ++ operator
+so, x++ will come out to an error unlike x += 1 would
+
+#3. julia's indexes START COUNTING at 1 and range functions are INCLUSIVE especially to the end or maximum range
+so in a string of "String", the index at S would be 1. 
+in a function that would print x on a line in range (1, 4), it would print as: 
+x    #1
+x    #2
+x    #3
+x    #4  
+this is important as most other languages do not include the last value
+
+#4. julia can store many different data types in similar areas
+data types like ints, floats, strings, and even functions can all be stored in arrays and tuples as follows
+a = [1, 2, 3.0, 3, 4.1545, "nou", "the order or size doesn't matter", sin, cos, tan, "you can even have cos ect..."] 
+
+#5. you can leave arrays as undefined so any data type can be added
+array = Array{Int64}(undef, 0) # undefined array length 0
+
+#6. often writing in python can actally work exceptionally well in julia and a lot if not all functions will work the same or similarly 
+
+#7. 
 
 
 
@@ -153,6 +228,8 @@ ___
 
 # 7. Decision Structures
 
+
+i believe this includes statements like if, else, while, maybe others? 
 ???
 
 
@@ -166,6 +243,8 @@ ___
 
 
 # 8. Conditional Operators
+
+hmmm, I'll hold off on these for now
 
 ???
 
