@@ -1,4 +1,4 @@
-f = open("Prog505a.txt", "r")
+f = open("Prog505aHelper/Prog505a.txt", "r")
 # s = read(f, String)
 # # println(s[1:15])
 # f = open("Prog505a.txt", "r")
