@@ -8,18 +8,14 @@ using FileIO
 #import Pkg; Pkg.add("JLD2")
 using JLD2
 #Pkg.add("JLD2")
-# TODO: ADD FUNCTION THAT TAKES IN ARGUMENTS!
+# no crocodile and a poptart
 # Priority que 
 println("This is a program to help you organize your tasks.")
-println("Enter t to create task, enter v to view the task list, enter end to end the program")
+println("Enter t to create task, enter v to view the task list, enter d to delete task, s to save task list, enter clear to clear all tasks, enter end to end the program.")
 pq = PriorityQueue{}(Base.Order.Forward)
 for (element, priority) in load("TaskList.jld2")
   enqueue!(pq, element=>priority)
 end
-# enqueue!(z, "p", 2)
-# enqueue!(z, "e", 7)
-# println(z)
-
 # The program should only use math, conditions, and loops, and MUST have a function with variable arguments, and something involving a list and searching, sorting, or iterating through the list.
 
 # doing a task manager based on due date and importance
@@ -28,14 +24,29 @@ end
 function create_Task()
   print("Please enter the task name: ")
   task = readline()
-  print("Please enter the task's importance(1-10): ")
-  importance = parse(Int64, readline())
-  if importance < 1
-    importance = 1
-  elseif importance > 10
-    importance = 10
+  if haskey(pq, task)
+    println("Task must have unique name")
+  else
+    print("Please enter the task's importance(1-10): ")
+    try
+      importance = parse(Int64, readline())
+      if importance < 1
+        importance = 1
+      elseif importance > 10
+        importance = 10
+      end
+      enqueue!(pq, task=>importance)
+    catch
+      println("Priority must be a whole number")
+    end
   end
-  enqueue!(pq, task=>importance)
+end
+
+
+
+function clear_Tasks()
+  empty!(pq)
+  println("All tasks removed")
 end
 
 
@@ -50,16 +61,17 @@ function view_Tasks()
   for (element, priority) in pq
     println("\t\tTask Name: $element \t Priority: $priority")
   end
-  println("\n")
+  print("\n")
 end
 
 
 
 function delete_Task()
-  println("What task would you like to remove?: ")
+  print("What task would you like to remove?: ")
   local response = readline()
   try
     delete!(pq, response)
+    println("removed $response from tasks")
   catch
     println("Could not find task named $response")
   end
@@ -69,7 +81,7 @@ end
 
 function main() 
   response = ""
-  print("What would you like to do?: ") 
+  print("\nWhat would you like to do?: ") 
   response = readline() 
   if response == "end" 
     println("End of program.")
@@ -82,11 +94,11 @@ function main()
     delete_Task()
   elseif response == "s"
     save_Tasks(pq)
+  elseif response == "clear"
+    clear_Tasks()
   else
     println("Please enter a valid function")
   end
-  #take in intitial input, keep taking in input and running functions with input. 
-  # run things like add task?: /// view list?: /// end program?: 
 end
 
 
