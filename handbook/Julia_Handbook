@@ -27,7 +27,7 @@ ___
 - [6. Comments](#6-comments)
 - [7. Decision Structures](#7-decision-structures)
 - [8. Conditional Operators](#8-conditional-operators)
-- [9. Logic Operators](#9-logic-operators)
+- [9. Logic Operators](#9-logic-operators)        add ! "not" to examples 
 - [10. Advanced Decision Structures](#10-advanced-decision-structures)
 - [11. String Methods](#11-string-methods)
 - [12. Random Generation](#12-random-generation)
@@ -243,12 +243,28 @@ ___
 
 
 # 8. Conditional Operators
+I don't really like how julia does these
 
-hmmm, I'll hold off on these for now
+if a == 10 
+  #enact the code if true here
+end
 
-???
+I don't really like this method because julia is very forgiving with loop syntax, but it requires the end statement for the end of every condition. it can get very confusing quickly. 
 
-
+Sample: 
+while num1 != 1
+  if iseven(num1)
+    i = num1
+    num1 = num1/2
+    println("$i is even, so I take half: $num1")
+    atps += 1
+  else 
+    i = num1
+    num1 = 3num1 + 1
+    println("$i is odd, so I make 3n+1: $num1")
+    atps += 1
+  end
+end
 
 
 
@@ -259,10 +275,21 @@ ___
 
 
 # 9. Logic Operators
+This is things like the "and" and "or" operators and how they work
+best shown by example
 
-???
+a = 10
+b = 20
+if a == 10 || b == 10
+  println("or")
+end
 
+if a == 10 && b == 10
+  println("and")
+end
 
+This code will only print "or" as the a == 10 statement is true so it runs because only one statement needs to be true. 
+It doesn't output "and" because b == 10 is false so both statements aren't true so it doesn't run. 
 
 
 
