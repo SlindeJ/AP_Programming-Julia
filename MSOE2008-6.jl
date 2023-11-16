@@ -4,7 +4,8 @@ print("Please enter the string to search for: ")
 search = readline() # string to search for
 local instances = 0 #instances of str 
 
-# indexes in julia are found using [], ex: str[start, end-1]. 
+# indexes in julia are found using [], ex: str[start, end-1].
+# i don't know if the end-1 is nessiccary anymore
 
 
 for lcv in range(0, length(str) - length(search)) 
