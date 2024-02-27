@@ -97,7 +97,7 @@ x = true
 
 
 every type in julia is like a "subtype" of the original "any" type
-something unexpected i learned was that booleans are considered integers in julia, so math can be done with them 
+something unexpected I learned was that booleans are considered integers in julia, so math can be done with them 
 true is equivilent to 1 and false is equivilent to 0
 1000 * false = 0
 99 * true = 99

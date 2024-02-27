@@ -51,9 +51,6 @@ function findTax(a, income) # 10, 12, 22, 24, 32, 35, 37
   println("\n\nYou owe $(finalTax) in taxes\n")
 end
 
-
-# probably have setBrackets take in income and calculate tax per status in if statments
-
 setBrackets(status) 
 findTax(a, income)
 
