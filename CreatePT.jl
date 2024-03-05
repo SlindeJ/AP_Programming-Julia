@@ -6,7 +6,7 @@ using FileIO
 #import Pkg; Pkg.add("JLD2")
 using JLD2
 global recipeList
-recipeList = [["recipe name", ["ingredient 1", "ingredient 2"]], ["recipe name 2", ["ingredient 1.2", "ingredient 2.2"]]]
+recipeList = Array{Any}(undef, 0)
 println("This is a program to help assist you with organizing your recipes")
 function saveList(recipeList)
   save("recipies.jld2", "recipeList")
@@ -18,8 +18,9 @@ function createRecipe()
   println("create")
   println("What is the recipe called? ")
   recipeName = readline()
+  # find out how to stop identical recipe name from being added
   ingredients = []
-  println("What are the ingredients and amounts? (type end to finish list)")
+  println("What are the ingredients and amounts? (type 'end' to finish list)")
   moreIngredients = true
   while moreIngredients
     ingredient = readline()
@@ -27,21 +28,35 @@ function createRecipe()
       moreIngredients = false
     else
       append!(ingredients, [ingredient])
-      println(ingredients)
     end
   end
-  recipe = [recipeName, ingredients]
-  append!(recipeList, recipe)     # fix here 
+  recipe = [[recipeName, ingredients]]
+  append!(recipeList, recipe)
 end
 
-function viewRecipe()
+function viewRecipe(displayed)
   for recip in recipeList
-    println(recip)
+    println(recip[1])
+    if displayed == "y"
+      for ingred in recip[2]
+        println(ingred)
+      end
+      println()
+    end
   end
 end
 
 function deleteRecipe()
-  print("delete")
+  println("Please enter the name of the recipe you want to remove")
+  recipeDelete = readline()
+  println(recipeList)
+  deleteat!(recipeList, findfirst(==recipeDelete, recipeList))
+  println(recipeList)  # continue here
+  # for recip in recipeList
+  #   if recip[1] == recipeDelete
+      
+  #   end
+  # end
 end
 
 function changeRecipe()
@@ -50,7 +65,18 @@ end
 
 function findRecipe()
   # for every recipe in list, if "recipeName" == "userSearch", display it
-  print("find")
+  println("Please enter the name of the recipe you are searching for")
+  recipeSearch = readline()
+  for recip in recipeList
+    if recip[1] == recipeSearch
+      println("\nThe recipe is:")
+      println(recip[1])
+        for ingred in recip[2]
+          println(ingred)
+        end
+        println()
+      end
+  end
 end
 
 println("Enter c to create a recipe, enter f to find a recipe in the list, enter d to delete a recipe, s to save the recipe list, enter end to end the program.")
@@ -70,7 +96,9 @@ function main()
   elseif response == "s"
     saveList()
   elseif response == "v"
-    viewRecipe()
+    println("Would you like to view with the ingredients displayed? (y/n)")
+    displayed = readline()
+    viewRecipe(displayed)
   else
     println("Please enter a valid choice")
   end
