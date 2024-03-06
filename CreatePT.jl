@@ -8,14 +8,13 @@ using JLD2
 global recipeList
 recipeList = Array{Any}(undef, 0)
 println("This is a program to help assist you with organizing your recipes")
-function saveList(recipeList)
-  save("recipies.jld2", "recipeList")
+
+function saveList()
+  save("recipies.jld2", recipeList)
   println("save")
 end
-# saveList(recipeList)
 
 function createRecipe()
-  println("create")
   println("What is the recipe called? ")
   recipeName = readline()
   # find out how to stop identical recipe name from being added
@@ -46,17 +45,26 @@ function viewRecipe(displayed)
   end
 end
 
+#########
+
+function returnRecipeIndex(recipeName)
+  for r in range(1, length(recipeList))
+    if recipeList[r][1] == recipeName
+      return r
+    end
+  end
+end
+
+#########
+
 function deleteRecipe()
   println("Please enter the name of the recipe you want to remove")
   recipeDelete = readline()
-  println(recipeList)
-  deleteat!(recipeList, findfirst(==recipeDelete, recipeList))
-  println(recipeList)  # continue here
-  # for recip in recipeList
-  #   if recip[1] == recipeDelete
-      
-  #   end
-  # end
+  try
+    deleteat!(recipeList, returnRecipeIndex(recipeDelete))
+  catch
+    println("That does not exist in the list")
+  end
 end
 
 function changeRecipe()
