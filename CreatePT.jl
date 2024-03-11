@@ -9,8 +9,10 @@ global recipeList
 recipeList = Array{Any}(undef, 0)
 println("This is a program to help assist you with organizing your recipes")
 
+# https://docs.julialang.org/en/v1/base/io-network/#General-I/O
+# use io = open("recipes.jld2", "w") and such
 function saveList()
-  save("recipies.jld2", recipeList)
+  reciepList |> save("recipes.jld2")
   println("save")
 end
 
