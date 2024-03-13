@@ -10,15 +10,51 @@ recipeList = Array{Any}(undef, 0)
 println("This is a program to help assist you with organizing your recipes")
 
 # https://docs.julialang.org/en/v1/base/io-network/#General-I/O
-# use io = open("recipes.jld2", "w") and such
+# use  and such
+
+function loadList()
+  io = open("recipes.jld2", "r") # read
+  file = read(io, String)
+  rList = []
+  rList = split(file, "\n")
+  ingredients = []
+  i = 1
+  while i < length(rList)
+    recipeName = rList[i]
+    i++
+    while rList[i] != "end"
+      append!(ingredients, rList[i])
+      i++
+    end
+    i++ # need to skip the "end" part???
+  end
+  append!(recipeList, [recipeName, [ingredientList]])  # don't know if work
+  println(rList)
+  close(io)
+  println("loaded")
+end
+loadList()
+
 function saveList()
-  reciepList |> save("recipes.jld2")
+  io = open("recipes.jld2", "w") # write
+  for r in recipeList
+    write(io, r[1])
+    for i in r[2]
+      write(io, "\n")
+      write(io, i)
+    end
+  end
+  write(io, "\nend")
+  close(io)
   println("save")
 end
 
 function createRecipe()
   println("What is the recipe called? ")
   recipeName = readline()
+  if recipeName == "end"
+    recipeName == "END"
+  end
   # find out how to stop identical recipe name from being added
   ingredients = []
   println("What are the ingredients and amounts? (type 'end' to finish list)")
