@@ -214,8 +214,14 @@ array = Array{Int64}(undef, 0) # undefined array length 0
 
 #6. often writing in python can actally work exceptionally well in julia and a lot if not all functions will work the same or similarly 
 
-#7. 
+#7. THE "UNEXPECTED END" STATEMENT JUST MEANS THAT THE CODE IN THAT STATMENT DOES NOT WORK
+Example: 
+if true
+  i++
+end
+Julia will say "unexpected end" when the end is in the right place, the code does not run because Julia does not support the "++" function 
 
+#8. 
 
 
 

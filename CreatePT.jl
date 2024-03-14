@@ -4,34 +4,34 @@
 #import Pkg; Pkg.add("FileIO")
 using FileIO
 #import Pkg; Pkg.add("JLD2")
-using JLD2
+#using JLD2
 global recipeList
 recipeList = Array{Any}(undef, 0)
 println("This is a program to help assist you with organizing your recipes")
 
 # https://docs.julialang.org/en/v1/base/io-network/#General-I/O
-# use  and such
 
 function loadList()
   io = open("recipes.jld2", "r") # read
   file = read(io, String)
   rList = []
   rList = split(file, "\n")
+  println(rList)    # print statement here
   ingredients = []
+  recipeName = ""
   i = 1
   while i < length(rList)
     recipeName = rList[i]
-    i++
+    i += 1
     while rList[i] != "end"
-      append!(ingredients, rList[i])
-      i++
+      append!(ingredients, rList[i])  # problem somewhere here
+      i += 1
     end
-    i++ # need to skip the "end" part???
+    i += 1 
   end
-  append!(recipeList, [recipeName, [ingredientList]])  # don't know if work
-  println(rList)
+  append!(recipeList, [[recipeName, ingredients]]) # issue with ingredients list
+  println(recipeList)    # print statment here
   close(io)
-  println("loaded")
 end
 loadList()
 
@@ -46,14 +46,14 @@ function saveList()
   end
   write(io, "\nend")
   close(io)
-  println("save")
+  println("\nRecipe List Saved")
 end
 
 function createRecipe()
   println("What is the recipe called? ")
   recipeName = readline()
   if recipeName == "end"
-    recipeName == "END"
+    recipeName = "END"
   end
   # find out how to stop identical recipe name from being added
   ingredients = []
