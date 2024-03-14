@@ -1,7 +1,7 @@
 # Create task project will be a recipe organizer
 # I will use my code from TaskScheduler to store the data in a separate data file 
 # there will be a list to store the name of the recipes and a list in that list that holds the ingredient list of that recipe
-#import Pkg; Pkg.add("FileIO")
+import Pkg; Pkg.add("FileIO")
 using FileIO
 #import Pkg; Pkg.add("JLD2")
 #using JLD2
@@ -22,9 +22,8 @@ function loadList()
   i = 1
   while i < length(rList)
     recipeName = rList[i]
-    i += 1
     while rList[i] != "end"
-      append!(ingredients, rList[i])  # problem somewhere here
+      append!(ingredients, i)  # problem here
       i += 1
     end
     i += 1 
