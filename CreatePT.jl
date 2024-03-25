@@ -1,35 +1,30 @@
 # Create task project will be a recipe organizer
-# I will use my code from TaskScheduler to store the data in a separate data file 
-# there will be a list to store the name of the recipes and a list in that list that holds the ingredient list of that recipe
-import Pkg; Pkg.add("FileIO")
+#import Pkg; Pkg.add("FileIO")
 using FileIO
 #import Pkg; Pkg.add("JLD2")
 #using JLD2
 global recipeList
 recipeList = Array{Any}(undef, 0)
-println("This is a program to help assist you with organizing your recipes")
-
-# https://docs.julialang.org/en/v1/base/io-network/#General-I/O
+println("This is a program to help assist you with organizing your recipes\n")
 
 function loadList()
   io = open("recipes.jld2", "r") # read
   file = read(io, String)
   rList = []
   rList = split(file, "\n")
-  println(rList)    # print statement here
-  ingredients = []
   recipeName = ""
   i = 1
   while i < length(rList)
+    ingredients = []
     recipeName = rList[i]
+    i += 1
     while rList[i] != "end"
-      append!(ingredients, i)  # problem here
+      append!(ingredients, [rList[i]])
       i += 1
     end
     i += 1 
+    append!(recipeList, [[recipeName, ingredients]])
   end
-  append!(recipeList, [[recipeName, ingredients]]) # issue with ingredients list
-  println(recipeList)    # print statment here
   close(io)
 end
 loadList()
@@ -42,8 +37,8 @@ function saveList()
       write(io, "\n")
       write(io, i)
     end
+    write(io, "\nend\n")
   end
-  write(io, "\nend")
   close(io)
   println("\nRecipe List Saved")
 end
@@ -108,8 +103,7 @@ function changeRecipe()
   print("change")
 end
 
-function findRecipe()
-  # for every recipe in list, if "recipeName" == "userSearch", display it
+function findRecipe()  # have a display for trying to find a recipe that does not exist
   println("Please enter the name of the recipe you are searching for")
   recipeSearch = readline()
   for recip in recipeList

@@ -1,5 +1,15 @@
-testrecipe
-1
-2
-3455
+recipe 1
+in1
+in2
+in3
+in4
+end
+recipe 2
+in1
+in2
+in3
+end
+recipe 3
+in 1
+in 2
 end
