@@ -1,8 +1,5 @@
-# Create task project will be a recipe organizer
-#import Pkg; Pkg.add("FileIO")
+import Pkg; Pkg.add("FileIO")
 using FileIO
-#import Pkg; Pkg.add("JLD2")
-#using JLD2
 global recipeList
 recipeList = Array{Any}(undef, 0)
 println("This is a program to help assist you with organizing your recipes\n")

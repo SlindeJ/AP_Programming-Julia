@@ -1,15 +1,23 @@
 recipe 1
-in1
-in2
-in3
-in4
+ingredient 1
+ingredient 2
+ingredient 3
+ingredient 4
+ingredient 5
 end
 recipe 2
-in1
-in2
-in3
+ingredient 1
+ingredient 2
+ingredient 3
 end
 recipe 3
-in 1
-in 2
+ingredient 1
+ingredient 2
+end
+recipe 4
+ingredient 1
+ingredient 2
+ingredient 3
+ingredient 4
+ingredient 5
 end
