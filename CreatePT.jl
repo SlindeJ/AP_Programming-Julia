@@ -5,7 +5,7 @@ recipeList = Array{Any}(undef, 0)
 println("This is a program to help assist you with organizing your recipes\n")
 
 function loadList()
-  io = open("recipes.jld2", "r") # read
+  io = open("recipes.jld2", "r")
   file = read(io, String)
   rList = []
   rList = split(file, "\n")
@@ -27,7 +27,7 @@ end
 loadList()
 
 function saveList()
-  io = open("recipes.jld2", "w") # write
+  io = open("recipes.jld2", "w")
   for r in recipeList
     write(io, r[1])
     for i in r[2]
@@ -46,7 +46,6 @@ function createRecipe()
   if recipeName == "end"
     recipeName = "END"
   end
-  # find out how to stop identical recipe name from being added
   ingredients = []
   println("What are the ingredients and amounts? (type 'end' to finish list)")
   moreIngredients = true
@@ -74,8 +73,6 @@ function viewRecipe(displayed)
   end
 end
 
-#########
-
 function returnRecipeIndex(recipeName)
   for r in range(1, length(recipeList))
     if recipeList[r][1] == recipeName
@@ -83,8 +80,6 @@ function returnRecipeIndex(recipeName)
     end
   end
 end
-
-#########
 
 function deleteRecipe()
   println("Please enter the name of the recipe you want to remove")
@@ -100,7 +95,7 @@ function changeRecipe()
   print("change")
 end
 
-function findRecipe()  # have a display for trying to find a recipe that does not exist
+function findRecipe()
   println("Please enter the name of the recipe you are searching for")
   recipeSearch = readline()
   for recip in recipeList
@@ -139,7 +134,6 @@ function main()
     println("Please enter a valid choice")
   end
 end
-
 
 _end = false
 while !_end
