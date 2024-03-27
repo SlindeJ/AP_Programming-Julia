@@ -91,10 +91,6 @@ function deleteRecipe()
   end
 end
 
-function changeRecipe()
-  print("change")
-end
-
 function findRecipe()
   println("Please enter the name of the recipe you are searching for")
   recipeSearch = readline()
@@ -110,7 +106,9 @@ function findRecipe()
   end
 end
 
-println("Enter c to create a recipe, enter f to find a recipe in the list, enter d to delete a recipe, s to save the recipe list, enter end to end the program.")
+println("Enter c to create a recipe, enter f to find a recipe in the list, 
+  enter d to delete a recipe, s to save the recipe list, enter end 
+  to end the program.")
 function main()
   response = ""
   print("\nWhat would you like to do?: ") 
